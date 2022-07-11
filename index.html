@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clock</title>
+    <style>
+      body {
+        background: black;
+      }
+
+      .clock {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        color: white;
+        font-size: 60px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body onload="startTime()">
+    <h2>Digital Clock</h2>
+
+    <div id="txt" class="clock"></div>
+
+    <script>
+      function startTime() {
+        const today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        let session = "AM";
+
+        if (h == 0) {
+          h = 12;
+        }
+
+        if (h > 12) {
+          h = h - 12;
+          session = "PM";
+        }
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById("txt").innerHTML =
+          h + ":" + m + ":" + s + " " + session;
+        setTimeout(startTime, 1000);
+      }
+
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+    </script>
+  </body>
+</html>
